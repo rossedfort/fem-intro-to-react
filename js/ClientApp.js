@@ -2,6 +2,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Match } from 'react-router'
+import { Provider } from 'react-redux'
 // Styles
 import '../public/normalize.css'
 import '../public/style.css'
@@ -11,19 +12,23 @@ import Search from './Search'
 import Details from './Details'
 // Data
 import preload from '../public/data.json'
+// Store
+import store from './store'
 
 const App = React.createClass({
   render () {
     return (
       <BrowserRouter>
-        <div className='app'>
-          <Match exactly pattern='/' component={Landing} />
-          <Match pattern='/search' component={(props) => <Search shows={preload.shows} {...props} />} />
-          <Match pattern='/details/:id' component={(props) => {
-            const show = preload.shows.filter((show) => props.params.id === show.imdbID)
-            return <Details show={show[0]} {...props} />
-          }} />
-        </div>
+        <Provider store={store}>
+          <div className='app'>
+            <Match exactly pattern='/' component={Landing} />
+            <Match pattern='/search' component={(props) => <Search shows={preload.shows} {...props} />} />
+            <Match pattern='/details/:id' component={(props) => {
+              const show = preload.shows.filter((show) => props.params.id === show.imdbID)
+              return <Details show={show[0]} {...props} />
+            }} />
+          </div>
+        </Provider>
       </BrowserRouter>
     )
   }
