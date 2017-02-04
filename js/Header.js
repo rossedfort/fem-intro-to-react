@@ -1,18 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { setSearchTerm } from './actionCreators'
 import { Link } from 'react-router'
 const { func, bool, string } = React.PropTypes
 
 const Header = React.createClass({
   propTypes: {
-    handleSearchTermChange: func,
     showSearch: bool,
-    searchTerm: string
+    searchTerm: string,
+    dispatchSetSearchTerm: func
+  },
+  handleSearchTermChange (event) {
+    this.dispatchSetSearchTerm(event.target.value)
   },
   render () {
     let utilSpace
 
     if (this.props.showSearch) {
-      utilSpace = <input onChange={this.props.handleSearchTermChange} value={this.props.searchTerm} type='text' placeholder='Search' />
+      utilSpace = <input onChange={this.handleSearchTermChange} value={this.props.searchTerm} type='text' placeholder='Search' />
     } else {
       utilSpace = (
         <h2>
@@ -32,4 +37,18 @@ const Header = React.createClass({
   }
 })
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.searchTerm
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchSetSearchTerm (searchTerm) {
+      dispatch(setSearchTerm(searchTerm))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
