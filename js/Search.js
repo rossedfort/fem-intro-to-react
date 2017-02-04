@@ -1,9 +1,22 @@
 import React from 'react'
-import preload from '../public/data.json'
-
 import ShowCard from './ShowCard'
+import Header from './Header'
+const { string, arrayOf, shape } = React.PropTypes
+
+// Good organization of code in React components
+  // 1. PropTypes
+  // 2. getInitialState()
+  // 3. Lifcycle hooks
+  // 4. Custom functions
+  // 5. render()
 
 const Search = React.createClass({
+  propTypes: {
+    shows: arrayOf(shape({
+      title: string,
+      description: string
+    }))
+  },
   getInitialState () {
     return {
       searchTerm: ''
@@ -15,12 +28,9 @@ const Search = React.createClass({
   render () {
     return (
       <div className='search'>
-        <header>
-          <h1>svideo</h1>
-          <input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type='text' placeholder='Search' />
-        </header>
+        <Header showSearch searchTerm={this.state.searchTerm} handleSearchTermChange={this.handleSearchTermChange} />
         <div>
-          {preload.shows.filter((show) => {
+          {this.props.shows.filter((show) => {
             return `${show.title} ${show.description}`
                 .toUpperCase()
                 .indexOf(this.state.searchTerm.toUpperCase()) >= 0

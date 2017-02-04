@@ -24,7 +24,7 @@ test('Search should render correct amount of shows based on searchTerm', () => {
     return `${show.title} ${show.description}`
         .toUpperCase()
         .indexOf(searchTerm.toUpperCase()) >= 0
-      }).length
+  }).length
   component.find('input').simulate('change', { target: { value: searchTerm } })
   expect(component.find(ShowCard).length).toEqual(showCount)
 })
