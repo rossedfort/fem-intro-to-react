@@ -11,7 +11,7 @@ const Header = React.createClass({
     dispatchSetSearchTerm: func
   },
   handleSearchTermChange (event) {
-    this.dispatchSetSearchTerm(event.target.value)
+    this.props.dispatchSetSearchTerm(event.target.value)
   },
   render () {
     let utilSpace
