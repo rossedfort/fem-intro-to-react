@@ -11,7 +11,6 @@ const ShowCard = React.createClass({
     imdbID: string.isRequired
   },
   render () {
-    // destructuring is cool :D
     const { poster, title, year, description, imdbID } = this.props
 
     return (

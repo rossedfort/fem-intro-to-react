@@ -4,13 +4,6 @@ import ShowCard from './ShowCard'
 import Header from './Header'
 const { string, arrayOf, shape } = React.PropTypes
 
-// Good organization of code in React components
-  // 1. PropTypes
-  // 2. getInitialState()
-  // 3. Lifcycle hooks
-  // 4. Custom functions
-  // 5. render()
-
 const Search = React.createClass({
   propTypes: {
     searchTerm: string,

@@ -19,12 +19,6 @@ const Details = React.createClass({
       omdbData: {}
     }
   },
-  // Lifecycle hooks
-  // componentWillMount gets called right before anything gets put into the dom
-  // componentDidMount (ngOnInit) gets called right after anything gets put into the dom
-  // componentWillUnmount (ngOnDestroy) gets called right before the component gets removed from the dom
-  // shouldComponentUpdate (change detection)
-    // the dom is available here, you can do ajax requests here, etc.
   componentDidMount () {
     axios.get(`http://www.omdbapi.com/?i=${this.props.show.imdbID}`)
       .then((response) => {

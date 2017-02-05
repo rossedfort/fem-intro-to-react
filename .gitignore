@@ -3,6 +3,5 @@ node_modules/
 *bundle*
 .DS_Store
 
-notes.txt
 /coverage
 npm-debug.log
